@@ -1,0 +1,6 @@
+{
+  "external_fragmentation_rate": 0.0,
+  "internal_fragmentation_peak_ratio": 0.04985019973368841,
+  "internal_fragmentation_peak_slots": 599,
+  "internal_fragmentation_theoretical_upper_bound_slots_per_seq": 15
+}

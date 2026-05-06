@@ -1,0 +1,31 @@
+{
+  "note": "PrefixCache module-level estimate; engine E2E gain depends on full integration.",
+  "config": {
+    "num_requests": 512,
+    "prefix_tokens": 256,
+    "suffix_tokens": 64,
+    "shared_prefix_groups": 8,
+    "block_size": 16,
+    "prefill_us_per_token": 2.0
+  },
+  "first_pass": {
+    "hit_rate": 0.984375,
+    "reused_token_ratio": 0.7875,
+    "cached_tokens": 129024,
+    "hit_blocks": 8064,
+    "lookup_overhead_ms": 4.093315452337265,
+    "insert_overhead_ms": 4.40883357077837,
+    "cache_overhead_ms": 8.502149023115635,
+    "theoretical_saved_prefill_ms": 258.048,
+    "net_estimated_ms": 249.54585097688437
+  },
+  "steady_state": {
+    "hit_rate": 1.0,
+    "reused_token_ratio": 1.0,
+    "cached_tokens": 163840,
+    "lookup_overhead_ms": 4.6409722417593,
+    "cache_overhead_ms": 4.6409722417593,
+    "theoretical_saved_prefill_ms": 327.68,
+    "net_estimated_ms": 323.0390277582407
+  }
+}

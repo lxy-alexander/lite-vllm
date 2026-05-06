@@ -1,0 +1,7 @@
+{
+  "active_sequences_mean": 31.75,
+  "active_sequences_p95": 32.0,
+  "idle_slot_ratio_mean": 0.8759765625,
+  "idle_slot_ratio_p95": 0.875,
+  "queue_wait_p99_s": 3.216421127319336
+}
