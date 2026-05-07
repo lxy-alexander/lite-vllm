@@ -1,8 +1,0 @@
-{
-  "request_throughput_req_per_s": 2.2952481624749916,
-  "output_token_throughput_tok_per_s": 293.79176479679893,
-  "total_token_throughput_tok_per_s": 689.8655258338897,
-  "num_requests": 32,
-  "total_prompt_tokens": 5522,
-  "total_output_tokens": 4096
-}

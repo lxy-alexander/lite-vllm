@@ -129,7 +129,9 @@ class Scheduler:
             if self.config.chunked_prefill:
                 chunk = min(remaining_prefill, self.config.chunk_size, budget_tokens - used_tokens)
             else:
-                chunk = remaining_prefill
+                # Still respect the token budget (one uncapped prefill could otherwise
+                # exceed max_num_batched_tokens in a single step).
+                chunk = min(remaining_prefill, budget_tokens - used_tokens)
 
             if chunk <= 0 or used_seqs + 1 > budget_seqs:
                 break

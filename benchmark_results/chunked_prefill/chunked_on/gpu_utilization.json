@@ -1,9 +1,0 @@
-{
-  "num_samples": 84,
-  "sm_util_mean": 80.5952380952381,
-  "sm_util_p95": 95.0,
-  "sm_util_p99": 95.85000000000001,
-  "gpu_mem_used_mb_peak": 13399.0,
-  "gpu_mem_total_mb": 15360.0,
-  "gpu_mem_util_peak": 87.23307291666667
-}

@@ -120,19 +120,22 @@ class LLMEngine:
             if not any(s.is_prefill for s in sg.get_unfinished_seqs())
         ]
 
-        # Prefill: one forward pass per group to avoid cross-sequence attention.
-        for sg in prefill_groups:
-            metadata = self.model_runner.prepare_inputs([sg], self.block_manager)
-            logits = self.model_runner.execute_model(metadata)
-            self._process_outputs(logits, [sg])
-
-        # Decode: batch all groups into a single forward pass.
+        # Decode first so in-flight sequences advance every step even when this
+        # batch also includes new or ongoing prefills (chunked or not). Running
+        # all prefills before decode would serialize long prefills ahead of every
+        # decode batch and largely removes chunked prefill's TTFT benefit.
         if decode_groups:
             metadata = self.model_runner.prepare_inputs(
                 decode_groups, self.block_manager
             )
             logits = self.model_runner.execute_model(metadata)
             self._process_outputs(logits, decode_groups)
+
+        # Prefill: one forward pass per group to avoid cross-sequence attention.
+        for sg in prefill_groups:
+            metadata = self.model_runner.prepare_inputs([sg], self.block_manager)
+            logits = self.model_runner.execute_model(metadata)
+            self._process_outputs(logits, [sg])
 
         # Build per-step outputs (with delta_text) before freeing finished
         # groups, so we can mark the last emission as finished=True.
